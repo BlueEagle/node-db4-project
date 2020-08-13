@@ -20,4 +20,13 @@ router.get("/:id/shopping-list", (req, res) => {
     .catch((error) => res.status(500).json({ error }).end());
 });
 
+router.get("/:id/instructions", (req, res) => {
+  const recipeId = req.params.id;
+  Recipes.getInstructions(recipeId)
+    .then((dbRes) => {
+      res.status(200).json({ instructions: dbRes }).end();
+    })
+    .catch((error) => res.status(500).json({ error }).end());
+});
+
 module.exports = router;
